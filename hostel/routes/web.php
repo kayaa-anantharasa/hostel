@@ -9,13 +9,14 @@ Route::resources(['products' =>ProductController::class,
 'orders'=>OrderController::class]);
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 });
 
 Route::get('/logout',[UserController::class,'logout']);
 Route::get('/createwarden',[UserController::class,'createwarden']);
 Route::get('/createstudent',[UserController::class,'createstudent']);
 Route::get('/studentsindex',[UserController::class,'stuindex']);
+Route::get('/checklogin',[UserController::class,'checklogin']);
 
 Route::post('/checklogin',[UserController::class,'checklogin']);
 

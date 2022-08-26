@@ -4,10 +4,13 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use validator;
 use Auth;
+use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UserController extends Controller
 {
+    
+    
     function index() {
         $subwardens=User::latest()->where('role','subwarden')->paginate(5);;
         return view('subwardenf.index',compact('subwardens'))->with('i',(request()->input('page',1) - 1)*5 );
@@ -26,7 +29,7 @@ class UserController extends Controller
     {
      $this->validate($request, [
         'email' => 'required|email',
-         'password' =>  ['required','string','min:8',],
+         'password' =>  ['required','string',],
         ]);
     $user_data = array(
          'email' => $request->get('email'),
@@ -42,16 +45,25 @@ class UserController extends Controller
             return view('dashboard.student');   
      }
      else{
+         
          return back()->with('error','Wrong Login Details');
+         return redirect('/');
+
      }
     }
   public function create()
     {
       return view('register');
     }
-    function logout()
+    function logout(Request $request)
     {
+        // Session::flush();
+        // Auth::logout();
         Auth::logout();
+ 
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
         return redirect('/');
     }
 
@@ -107,4 +119,5 @@ class UserController extends Controller
         $users->save();
        //return redirect('/emp')->with('success', 'Contact updated!');
      }  
+     
 }
