@@ -5,7 +5,7 @@
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-4">
-                    <h3 class="card-header text-center ">Employee Registration</h3>
+                    <h3 class="card-header text-center ">Student Registration</h3>
                     <div class="card-body">
     @if($errors->any())
       <div class="alert alert-danger">

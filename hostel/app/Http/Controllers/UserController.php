@@ -37,9 +37,9 @@ class UserController extends Controller
          if(Auth::user()->role == 'warden')
             return view('dashboard.admin');
         else if(Auth::user()->role == 'subwarden')
-            return view('dashboard.employee');
+            return view('dashboard.subwarden');
          else if(Auth::user()->role == 'student')
-            return view('dashboard.customer');   
+            return view('dashboard.student');   
      }
      else{
          return back()->with('error','Wrong Login Details');
@@ -107,9 +107,4 @@ class UserController extends Controller
         $users->save();
        //return redirect('/emp')->with('success', 'Contact updated!');
      }  
-     function destroy(User $user) {
-       
-        $user->delete();
-        return redirect()->route('users.index')->with('success', 'Employee deleted Successfully!');
-     }
 }

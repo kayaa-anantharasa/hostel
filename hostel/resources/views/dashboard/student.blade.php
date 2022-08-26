@@ -1,4 +1,4 @@
 @extends('dashboard.header')
 @section('content')
-Welcome to Customer Dashboard!
+Welcome to student Dashboard!
 @endsection
