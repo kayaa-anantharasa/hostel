@@ -107,7 +107,4 @@ class UserController extends Controller
         $users->save();
        //return redirect('/emp')->with('success', 'Contact updated!');
      }  
-     function destroy(User $user) {
-       
-     
 }
